@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daiko Shop - Cửa hàng trực tuyến</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html">Daiko Shop</a></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Chào mừng đến với Daiko Shop</h2>
+            <p>Khám phá những sản phẩm chất lượng cao với giá tốt nhất</p>
+            <a href="products.html" class="btn btn-primary">Mua sắm ngay</a>
+        </div>
+        <div class="hero-slider">
+            <div class="slide active">
+                <img src="https://via.placeholder.com/800x400/4CAF50/ffffff?text=Sản+phẩm+chất+lượng" alt="Banner 1">
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/800x400/2196F3/ffffff?text=Giá+tốt+nhất" alt="Banner 2">
+            </div>
+            <div class="slide">
+                <img src="https://via.placeholder.com/800x400/FF9800/ffffff?text=Giao+hàng+nhanh" alt="Banner 3">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Giao hàng nhanh</h3>
+                    <p>Giao hàng toàn quốc trong 1-3 ngày</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Bảo hành chính hãng</h3>
+                    <p>Cam kết sản phẩm chính hãng 100%</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>Hỗ trợ 24/7</h3>
+                    <p>Đội ngũ tư vấn nhiệt tình</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-undo"></i>
+                    <h3>Đổi trả dễ dàng</h3>
+                    <p>Đổi trả trong 7 ngày nếu không hài lòng</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Sản phẩm nổi bật</h2>
+            <div class="product-grid" id="featuredProducts">
+                <!-- Products will be loaded by JavaScript -->
+            </div>
+            <div class="text-center">
+                <a href="products.html" class="btn btn-outline">Xem tất cả sản phẩm</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Danh mục sản phẩm</h2>
+            <div class="category-grid">
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/300x200/E91E63/ffffff?text=Thời+trang" alt="Thời trang">
+                    <h3>Thời trang</h3>
+                    <a href="products.html?category=fashion" class="btn btn-small">Xem ngay</a>
+                </div>
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/300x200/9C27B0/ffffff?text=Điện+tử" alt="Điện tử">
+                    <h3>Điện tử</h3>
+                    <a href="products.html?category=electronics" class="btn btn-small">Xem ngay</a>
+                </div>
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/300x200/3F51B5/ffffff?text=Gia+dụng" alt="Gia dụng">
+                    <h3>Gia dụng</h3>
+                    <a href="products.html?category=home" class="btn btn-small">Xem ngay</a>
+                </div>
+                <div class="category-item">
+                    <img src="https://via.placeholder.com/300x200/009688/ffffff?text=Làm+đẹp" alt="Làm đẹp">
+                    <h3>Làm đẹp</h3>
+                    <a href="products.html?category=beauty" class="btn btn-small">Xem ngay</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Đăng ký nhận tin khuyến mãi</h2>
+                <p>Nhận thông tin về sản phẩm mới và ưu đãi đặc biệt</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Nhập email của bạn" required>
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Daiko Shop</h3>
+                    <p>Cửa hàng trực tuyến uy tín với đa dạng sản phẩm chất lượng cao.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</p>
+                    <p><i class="fas fa-phone"></i> +84 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> contact@daikoshop.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Daiko Shop. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

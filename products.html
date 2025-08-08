@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản phẩm - Daiko Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html">Daiko Shop</a></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html" class="active">Sản phẩm</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav>
+                <a href="index.html">Trang chủ</a>
+                <span>/</span>
+                <span>Sản phẩm</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Products Page -->
+    <section class="products-page">
+        <div class="container">
+            <div class="products-layout">
+                <!-- Sidebar Filters -->
+                <aside class="filters-sidebar">
+                    <div class="filter-section">
+                        <h3>Danh mục</h3>
+                        <div class="filter-group">
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="all" checked>
+                                <span>Tất cả</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="fashion">
+                                <span>Thời trang</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="electronics">
+                                <span>Điện tử</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="home">
+                                <span>Gia dụng</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="checkbox" name="category" value="beauty">
+                                <span>Làm đẹp</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Khoảng giá</h3>
+                        <div class="price-range">
+                            <input type="number" placeholder="Từ" id="priceMin">
+                            <input type="number" placeholder="Đến" id="priceMax">
+                            <button class="btn btn-small" onclick="applyPriceFilter()">Áp dụng</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <h3>Đánh giá</h3>
+                        <div class="filter-group">
+                            <label class="filter-item">
+                                <input type="radio" name="rating" value="5">
+                                <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="radio" name="rating" value="4">
+                                <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i> trở lên</span>
+                            </label>
+                            <label class="filter-item">
+                                <input type="radio" name="rating" value="3">
+                                <span><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i> trở lên</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-outline btn-full" onclick="clearFilters()">Xóa bộ lọc</button>
+                </aside>
+
+                <!-- Products Content -->
+                <main class="products-content">
+                    <div class="products-header">
+                        <div class="products-info">
+                            <span id="productCount">0</span> sản phẩm
+                        </div>
+                        <div class="sort-options">
+                            <select id="sortSelect">
+                                <option value="default">Sắp xếp theo</option>
+                                <option value="name-asc">Tên A-Z</option>
+                                <option value="name-desc">Tên Z-A</option>
+                                <option value="price-asc">Giá thấp đến cao</option>
+                                <option value="price-desc">Giá cao đến thấp</option>
+                                <option value="rating-desc">Đánh giá cao nhất</option>
+                            </select>
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
+                                <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="products-grid" id="productsContainer">
+                        <!-- Products will be loaded by JavaScript -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="pagination">
+                        <!-- Pagination will be generated by JavaScript -->
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Daiko Shop</h3>
+                    <p>Cửa hàng trực tuyến uy tín với đa dạng sản phẩm chất lượng cao.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</p>
+                    <p><i class="fas fa-phone"></i> +84 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> contact@daikoshop.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Daiko Shop. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

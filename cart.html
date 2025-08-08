@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Daiko Shop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <h1><a href="index.html">Daiko Shop</a></h1>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="products.html">Sản phẩm</a></li>
+                    <li><a href="about.html">Giới thiệu</a></li>
+                    <li><a href="contact.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="nav-actions">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..." id="searchInput">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </a>
+                </div>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav>
+                <a href="index.html">Trang chủ</a>
+                <span>/</span>
+                <span>Giỏ hàng</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Cart Page -->
+    <section class="cart-page">
+        <div class="container">
+            <h1 class="page-title">Giỏ hàng của bạn</h1>
+            
+            <div class="cart-content" id="cartContent">
+                <!-- Cart items will be loaded by JavaScript -->
+            </div>
+
+            <div class="cart-empty" id="cartEmpty" style="display: none;">
+                <div class="empty-cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h2>Giỏ hàng của bạn đang trống</h2>
+                <p>Hãy thêm một số sản phẩm vào giỏ hàng để tiếp tục mua sắm</p>
+                <a href="products.html" class="btn btn-primary">Tiếp tục mua sắm</a>
+            </div>
+
+            <div class="cart-summary" id="cartSummary">
+                <div class="cart-layout">
+                    <div class="cart-items">
+                        <div class="cart-header">
+                            <div class="cart-header-item">Sản phẩm</div>
+                            <div class="cart-header-item">Giá</div>
+                            <div class="cart-header-item">Số lượng</div>
+                            <div class="cart-header-item">Tổng</div>
+                            <div class="cart-header-item"></div>
+                        </div>
+                        <div class="cart-items-list" id="cartItemsList">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="cart-sidebar">
+                        <div class="cart-totals">
+                            <h3>Tổng đơn hàng</h3>
+                            <div class="total-row">
+                                <span>Tạm tính:</span>
+                                <span id="subtotal">0₫</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Phí vận chuyển:</span>
+                                <span id="shipping">30,000₫</span>
+                            </div>
+                            <div class="total-row discount-row" id="discountRow" style="display: none;">
+                                <span>Giảm giá:</span>
+                                <span id="discount">-0₫</span>
+                            </div>
+                            <div class="total-row total-final">
+                                <span>Tổng cộng:</span>
+                                <span id="total">0₫</span>
+                            </div>
+
+                            <div class="coupon-section">
+                                <input type="text" placeholder="Mã giảm giá" id="couponInput">
+                                <button class="btn btn-outline" onclick="applyCoupon()">Áp dụng</button>
+                            </div>
+
+                            <button class="btn btn-primary btn-full" onclick="proceedToCheckout()">
+                                <i class="fas fa-lock"></i>
+                                Tiến hành thanh toán
+                            </button>
+
+                            <div class="continue-shopping">
+                                <a href="products.html">← Tiếp tục mua sắm</a>
+                            </div>
+                        </div>
+
+                        <div class="payment-methods">
+                            <h4>Phương thức thanh toán</h4>
+                            <div class="payment-icons">
+                                <img src="https://via.placeholder.com/40x25/1976D2/ffffff?text=VISA" alt="Visa">
+                                <img src="https://via.placeholder.com/40x25/FF5722/ffffff?text=MC" alt="Mastercard">
+                                <img src="https://via.placeholder.com/40x25/2196F3/ffffff?text=MOMO" alt="Momo">
+                                <img src="https://via.placeholder.com/40x25/4CAF50/ffffff?text=ATM" alt="ATM">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Thông tin thanh toán</h2>
+                <span class="close" onclick="closeCheckoutModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-section">
+                        <h3>Thông tin giao hàng</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Họ và tên *</label>
+                                <input type="text" id="fullName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Số điện thoại *</label>
+                                <input type="tel" id="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Địa chỉ giao hàng *</label>
+                            <textarea id="address" rows="3" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">Tỉnh/Thành phố *</label>
+                                <select id="city" required>
+                                    <option value="">Chọn tỉnh/thành phố</option>
+                                    <option value="hanoi">Hà Nội</option>
+                                    <option value="hochiminh">TP. Hồ Chí Minh</option>
+                                    <option value="danang">Đà Nẵng</option>
+                                    <option value="haiphong">Hải Phòng</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="district">Quận/Huyện *</label>
+                                <select id="district" required>
+                                    <option value="">Chọn quận/huyện</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Phương thức thanh toán</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cod" checked>
+                                <span class="payment-icon"><i class="fas fa-money-bill-wave"></i></span>
+                                <div>
+                                    <strong>Thanh toán khi nhận hàng (COD)</strong>
+                                    <p>Thanh toán bằng tiền mặt khi nhận hàng</p>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="banking">
+                                <span class="payment-icon"><i class="fas fa-university"></i></span>
+                                <div>
+                                    <strong>Chuyển khoản ngân hàng</strong>
+                                    <p>Chuyển khoản qua ATM hoặc Internet Banking</p>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="momo">
+                                <span class="payment-icon"><i class="fas fa-mobile-alt"></i></span>
+                                <div>
+                                    <strong>Ví điện tử MoMo</strong>
+                                    <p>Thanh toán qua ví MoMo</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="form-group">
+                            <label for="notes">Ghi chú đơn hàng</label>
+                            <textarea id="notes" rows="2" placeholder="Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="checkout-summary">
+                        <div class="summary-row">
+                            <span>Tạm tính:</span>
+                            <span id="checkoutSubtotal">0₫</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển:</span>
+                            <span id="checkoutShipping">30,000₫</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Tổng cộng:</span>
+                            <span id="checkoutTotal">0₫</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-check"></i>
+                        Đặt hàng
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Đặt hàng thành công!</h2>
+            </div>
+            <div class="modal-body text-center">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Cảm ơn bạn đã đặt hàng!</h3>
+                <p>Đơn hàng của bạn đã được ghi nhận. Chúng tôi sẽ liên hệ với bạn sớm nhất để xác nhận.</p>
+                <div class="order-info">
+                    <p><strong>Mã đơn hàng:</strong> <span id="orderNumber">#DK001</span></p>
+                    <p><strong>Tổng tiền:</strong> <span id="orderTotal">0₫</span></p>
+                </div>
+                <button class="btn btn-primary" onclick="closeSuccessModal()">Tiếp tục mua sắm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Daiko Shop</h3>
+                    <p>Cửa hàng trực tuyến uy tín với đa dạng sản phẩm chất lượng cao.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên kết nhanh</h4>
+                    <ul>
+                        <li><a href="index.html">Trang chủ</a></li>
+                        <li><a href="products.html">Sản phẩm</a></li>
+                        <li><a href="about.html">Giới thiệu</a></li>
+                        <li><a href="contact.html">Liên hệ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Chính sách</h4>
+                    <ul>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Hà Nội, Việt Nam</p>
+                    <p><i class="fas fa-phone"></i> +84 123 456 789</p>
+                    <p><i class="fas fa-envelope"></i> contact@daikoshop.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Daiko Shop. Tất cả quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>
