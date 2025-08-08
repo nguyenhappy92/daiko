@@ -156,10 +156,13 @@ function applyUrlFilters() {
     
     // Apply category filter from URL
     const category = urlParams.get('category');
-    if (category) {
+    if (category && ['tools', 'accessories', 'parts', 'maintenance', 'battery'].includes(category)) {
         currentFilters.categories = [category];
-        document.querySelector(`input[value="${category}"]`).checked = true;
-        document.querySelector('input[value="all"]').checked = false;
+        const categoryCheckbox = document.querySelector(`input[value="${category}"]`);
+        if (categoryCheckbox) {
+            categoryCheckbox.checked = true;
+            document.querySelector('input[value="all"]').checked = false;
+        }
     }
 }
 
